@@ -108,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
           curve: Curves.elasticOut,
           reverseCurve: Curves.linear,
         ),
-        // tooltip: 'Home',
+        tooltip: 'Home',
         child: const Icon(Icons.home),
       );
 
