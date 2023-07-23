@@ -24,7 +24,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String changeTitle = 'Flutter Home Page';
   bool isSelect = false;
-  late int _currentIndex;
+  int _currentIndex = 0;
   List imgList = [
     'images/s1.jpg',
     'images/s2.jpg',
@@ -42,29 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 30),
-          CarouselSlider(
-            items: imgList
-                .map((itemImages) => Container(
-                    width: double.infinity,
-                    child: Image.asset(
-                      itemImages,
-                      fit: BoxFit.fill,
-                    )))
-                .toList(),
-            options: CarouselOptions(
-              height: 186,
-              initialPage: 0,
-              autoPlay: true,
-              onPageChanged: (index, _) =>
-                  setState(() => _currentIndex = index),
-              enlargeCenterPage: true,
-              autoPlayInterval: const Duration(seconds: 3),
-              // autoPlayAnimationDuration: const Duration(seconds: 1),
-              autoPlayCurve: Curves.fastOutSlowIn,
-              enableInfiniteScroll: false,
-              // viewportFraction: 1,
-            ),
-          ),
+          buildCarouseSliderHorzontal(),
           const SizedBox(height: 30),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -75,24 +53,53 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
           const SizedBox(height: 30),
-          CarouselSlider.builder(
-            itemCount: imgList.length,
-            itemBuilder: (_, index, realIndex) => Container(
-                width: double.infinity,
-                child: Image.asset(
-                  imgList[index],
-                  fit: BoxFit.fill,
-                )),
-            options: CarouselOptions(
-              height: 186,
-              initialPage: 1,
-              // autoPlay: true,
-              enlargeCenterPage: true,
-              scrollDirection: Axis.vertical,
-              autoPlayInterval: const Duration(seconds: 3),
-            ),
-          ),
+          buildCarouseSliderVertical(),
         ],
+      ),
+    );
+  }
+
+  CarouselSlider buildCarouseSliderVertical() {
+    return CarouselSlider.builder(
+      itemCount: imgList.length,
+      itemBuilder: (_, index, realIndex) => Container(
+          width: double.infinity,
+          child: Image.asset(
+            imgList[index],
+            fit: BoxFit.fill,
+          )),
+      options: CarouselOptions(
+        height: 186,
+        initialPage: 1,
+        // autoPlay: true,
+        enlargeCenterPage: true,
+        scrollDirection: Axis.vertical,
+        autoPlayInterval: const Duration(seconds: 3),
+      ),
+    );
+  }
+
+  CarouselSlider buildCarouseSliderHorzontal() {
+    return CarouselSlider(
+      items: imgList
+          .map((itemImages) => Container(
+              width: double.infinity,
+              child: Image.asset(
+                itemImages,
+                fit: BoxFit.fill,
+              )))
+          .toList(),
+      options: CarouselOptions(
+        height: 186,
+        initialPage: 0,
+        autoPlay: true,
+        onPageChanged: (index, _) => setState(() => _currentIndex = index),
+        enlargeCenterPage: true,
+        autoPlayInterval: const Duration(seconds: 3),
+        // autoPlayAnimationDuration: const Duration(seconds: 1),
+        autoPlayCurve: Curves.fastOutSlowIn,
+        enableInfiniteScroll: false,
+        // viewportFraction: 1,
       ),
     );
   }
