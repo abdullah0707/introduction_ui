@@ -8,6 +8,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
         debugShowCheckedModeBanner: false,
+        theme: ThemeData(primaryColor: Colors.teal, canvasColor: Colors.white),
+        themeMode: ThemeMode.system,
         darkTheme: ThemeData.dark(),
         home: const MyHomePage(),
       );
