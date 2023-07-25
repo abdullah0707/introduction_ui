@@ -6,24 +6,12 @@ class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<MyApp> createState() => _MyHomePageState();
 }
 
 dynamic moodTheme = ThemeMode.dark;
 
-class _MyAppState extends State<MyApp> {
-  @override
-  Widget build(BuildContext context) => const MyHomePage();
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyApp> {
   int _radioValue = 0;
   @override
   Widget build(BuildContext context) {
